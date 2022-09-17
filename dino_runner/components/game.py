@@ -100,12 +100,12 @@ class Game:
         font = pygame.font.Font(FONT_STYLE, 20)
         text = font.render(f'Score: {self.score}', True, (0, 0, 0))
         text_h = font.render(f'HI: {self.high_score}', True, (0, 0, 0))
-        text_rec = text.get_rect()
-        text_h_rec = text_h.get_rect()
-        text_h_rec = (850, 40)
-        text_rec.center = (1000, 50)
-        self.screen.blit(text, text_rec)
-        self.screen.blit(text_h, text_h_rec)
+        text_rect = text.get_rect()
+        text_h_rect = text_h.get_rect()
+        text_h_rect.center = (850, 50)
+        text_rect.center = (1000, 50)
+        self.screen.blit(text, text_rect)
+        self.screen.blit(text_h, text_h_rect)
         
     def draw_power_up_time(self):
         if self.player.has_power_up:
