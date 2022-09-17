@@ -2,6 +2,7 @@ import pygame
 from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING, RUNNING_SHIELD, JUMPING_SHIELD, DUCKING_SHIELD, DEFAULT_TYPE, SHIELD_TYPE
 from pygame.sprite import Sprite
 
+
 RUN_IMG = {DEFAULT_TYPE: RUNNING, SHIELD_TYPE: RUNNING_SHIELD }
 JUMP_IMG = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD }
 DUCK_IMG = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD }
@@ -22,6 +23,7 @@ class Dinosaur(Sprite):
         self.jump_vel = 8.5
         self.has_power_up = False
         self.power_time_up = 0
+        self.jump_sound = pygame.mixer.Sound('DiegoDiaz-MX-Dino-Runner-Modulo2/dino_runner/assets/Other/JUMP.mp3')
 
     def update(self, user_input):
         if self.dino_run:
@@ -35,6 +37,7 @@ class Dinosaur(Sprite):
 
         if user_input[pygame.K_UP] and not self.dino_jump or user_input[pygame.K_SPACE] and not self.dino_jump:
             self.dino_jump = True
+            self.jump_sound.play()
             self.dino_run = False
             self.dino_duck = False      
 

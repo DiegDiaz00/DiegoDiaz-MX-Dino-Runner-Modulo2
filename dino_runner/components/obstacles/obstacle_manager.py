@@ -10,6 +10,7 @@ from dino_runner.components.obstacles.bird import Bird
 class ObstacleManager:
     def __init__(self):
         self.obstacles = []
+        self.sound_lose = pygame.mixer.Sound('DiegoDiaz-MX-Dino-Runner-Modulo2/dino_runner/assets/Other/LOSE.mp3')
     
     def update(self, game):
         if len(self.obstacles) == 0:
@@ -24,6 +25,7 @@ class ObstacleManager:
             obstacle.update(game.game_speed, self.obstacles)
             if game.player.dino_rect.colliderect(obstacle.rect):
                 if game.player.type != SHIELD_TYPE:
+                    self.sound_lose.play()
                     pygame.time.delay(1000)
                     game.death_count += 1
                     game.playing = False
